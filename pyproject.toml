@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "national-id-validator"
+version = "0.1.0"
+description = "A simple API for validating and extracting key information from Egyptian National ID numbers"
+authors = ["AhmedNasserG <ahmednasser217217@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "national_id_validator"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "^4.2.7"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.1.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
