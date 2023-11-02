@@ -1,7 +1,7 @@
 # national-id-validator
 
 ![test workflow](https://github.com/AhmedNasserG/national-id-validator/actions/workflows/test.yml/badge.svg)
-![linter workflow](https://github.com/AhmedNasserG/national-id-validator/actions/workflows/test.yml/badge.svg)
+![linter workflow](https://github.com/AhmedNasserG/national-id-validator/actions/workflows/ruff.yml/badge.svg)
 
 A simple API for validating and extracting key information from Egyptian National ID numbers
 
