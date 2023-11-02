@@ -1,5 +1,11 @@
-name: test_Django
-on: [pull_request, push]
+name: Tests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 jobs:
   test_project:
     runs-on: ubuntu-latest
