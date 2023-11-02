@@ -1,28 +1,19 @@
 import re
 from datetime import datetime
 
-EGYPTIAN_NATIONAL_ID_REGEX = (
-    r"^(2|3)"  # birth century
-    r"([0-9]{2})"  # birth year
-    r"(0[1-9]|1[0-2])"  # birth month
-    r"(0[1-9]|1[0-9]|2[0-9]|3[0-1])"  # birth day
-    # governorate code
-    r"(01|02|03|04|11|12|13|14|15|16|17|18|19|21|22|23|24|25|26|27|28|29|31|32|33|34|35|88)"
-    r"(\d{3})"  # sequence number
-    r"([1-9])"  # gender
-    r"(\d)$"  # verification digit
-)
 
-BIRTH_CENTURY_INDEX = 1
-BIRTH_YEAR_INDEX = 2
-BIRTH_MONTH_INDEX = 3
-BIRTH_DAY_INDEX = 4
-GOVERNORATE_CODE_INDEX = 5
-SEQUENCE_NUMBER_INDEX = 6
-GENDER_CODE_INDEX = 7
-VERIFICATION_DIGIT_INDEX = 8
+BIRTH_CENTURY = "birth_century"
+BIRTH_YEAR = "birth_year"
+BIRTH_MONTH = "birth_month"
+BIRTH_DAY = "birth_day"
+GOVERNORATE_CODE = "governorate_code"
+SEQUENCE_NUMBER = "sequence_number"
+GENDER_CODE = "gender_code"
+VERIFICATION_DIGIT = "verification_digit"
 
-CENTURIES: dict[str, int] = {"2": 1900, "3": 2000}
+BIRTH_DATE_FIELD = "birth_date"
+GOVERNORATE_FIELD = "governorate"
+GENDER_FIELD = "gender"
 
 GOVERNORATES: dict[str, str] = {
     "01": "Cairo",
@@ -55,6 +46,19 @@ GOVERNORATES: dict[str, str] = {
     "88": "Foreign",
 }
 
+CENTURIES: dict[str, int] = {"2": 1900, "3": 2000}
+
+EGYPTIAN_NATIONAL_ID_REGEX = (
+    rf"^(?P<{BIRTH_CENTURY}>{'|'.join(CENTURIES.keys())})"
+    rf"(?P<{BIRTH_YEAR}>[0-9]{{2}})"
+    rf"(?P<{BIRTH_MONTH}>0[1-9]|1[0-2])"
+    rf"(?P<{BIRTH_DAY}>0[1-9]|1[0-9]|2[0-9]|3[0-1])"
+    rf"(?P<{GOVERNORATE_CODE}>{'|'.join(GOVERNORATES.keys())})"
+    rf"(?P<{SEQUENCE_NUMBER}>\d{{3}})"
+    rf"(?P<{GENDER_CODE}>[1-9])"
+    rf"(?P<{VERIFICATION_DIGIT}>\d)$"
+)
+
 
 class EgyptianNationalId:
     """
@@ -70,16 +74,16 @@ class EgyptianNationalId:
 
         match = re.match(EGYPTIAN_NATIONAL_ID_REGEX, self.national_id)
 
-        self.fields["birth_date"] = self.__parse_birth_date(
-            match[BIRTH_CENTURY_INDEX],
-            match[BIRTH_YEAR_INDEX],
-            match[BIRTH_MONTH_INDEX],
-            match[BIRTH_DAY_INDEX],
+        self.fields[BIRTH_DATE_FIELD] = self.__parse_birth_date(
+            match[BIRTH_CENTURY],
+            match[BIRTH_YEAR],
+            match[BIRTH_MONTH],
+            match[BIRTH_DAY],
         )
-        self.fields["governorate"] = self.__parse_governorate(
-            match[GOVERNORATE_CODE_INDEX]
+        self.fields[GOVERNORATE_FIELD] = self.__parse_governorate(
+            match[GOVERNORATE_CODE]
         )
-        self.fields["gender"] = self.__parse_gender(match[GENDER_CODE_INDEX])
+        self.fields[GENDER_FIELD] = self.__parse_gender(match[GENDER_CODE])
 
     def __is_valid(self, national_id: str) -> bool:
         """
