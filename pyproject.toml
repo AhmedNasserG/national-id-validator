@@ -11,6 +11,7 @@ packages = [{include = "national_id_validator"}]
 python = "^3.9"
 Django = "^4.2.7"
 djangorestframework = "^3.14.0"
+drf-yasg = "^1.21.7"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.1.3"
