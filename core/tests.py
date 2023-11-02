@@ -1,6 +1,7 @@
 from datetime import datetime
 from django.test import TestCase
 from django.urls import reverse
+from freezegun import freeze_time
 from rest_framework import status
 from rest_framework.test import APIClient
 
@@ -55,6 +56,14 @@ class InvalidEgyptianNationalIdTestCase(TestCase):
         """
         with self.assertRaises(ValueError):
             EgyptianNationalId("30107411500852")
+
+    @freeze_time("2010-01-01")
+    def test_national_id_with_birth_date_in_future(self):
+        """
+        Test invalid national ID with birth date in future.
+        """
+        with self.assertRaises(ValueError):
+            EgyptianNationalId("31107211500852")
 
     def test_national_id_with_invalid_governorate_code(self):
         """

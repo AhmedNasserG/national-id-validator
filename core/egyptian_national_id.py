@@ -97,7 +97,12 @@ class EgyptianNationalId:
         birth_year = CENTURIES[century] + int(year)
         birth_month = int(month)
         birth_day = int(day)
-        return datetime(birth_year, birth_month, birth_day).date()
+        birth_date = datetime(birth_year, birth_month, birth_day).date()
+
+        if birth_date > datetime.now().date():
+            raise ValueError("Invalid birth date")
+
+        return birth_date
 
     def __parse_governorate(self, governorate_code: str) -> str:
         """
