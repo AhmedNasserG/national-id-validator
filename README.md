@@ -146,6 +146,9 @@ curl -X 'GET' \
 
 Credits for the background information [stackexchange](https://codereview.stackexchange.com/questions/221899/extract-information-from-egyptian-national-id)
 
+## Notes
+- The API currently supports Egyptian national IDs for individuals born before the year 2100. Therefore, the API will need to be updated by the year 2100 to continue providing accurate validation for future generations.
+
 ## License
 
 MIT License © 2023 Ahmed Nasser
