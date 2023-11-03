@@ -1,6 +1,7 @@
 import re
 from datetime import datetime
 
+from .exceptions import InvalidNationalIdException
 
 BIRTH_CENTURY = "birth_century"
 BIRTH_YEAR = "birth_year"
@@ -70,7 +71,7 @@ class EgyptianNationalId:
         self.fields = {}
 
         if not self.__is_valid(self.national_id):
-            raise ValueError("Invalid national ID")
+            raise InvalidNationalIdException()
 
         match = re.match(EGYPTIAN_NATIONAL_ID_REGEX, self.national_id)
 
@@ -104,7 +105,7 @@ class EgyptianNationalId:
         birth_date = datetime(birth_year, birth_month, birth_day).date()
 
         if birth_date > datetime.now().date():
-            raise ValueError("Invalid birth date")
+            raise InvalidNationalIdException()
 
         return birth_date
 
