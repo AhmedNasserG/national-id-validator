@@ -27,7 +27,7 @@ pre-commit install
 ### Unit tests
 
 ```bash
-poetry run python manage.py tests
+poetry run python manage.py test
 ```
 
 ### Consume the api from the terminal
@@ -41,7 +41,6 @@ curl -X 'GET' \
 
 go to `http://127.0.0.1:8000/swagger/` to find the documentation and use `Try it out` option
 
-
 ## API Documentations
 
 ### Swagger
@@ -51,14 +50,12 @@ go to `http://127.0.0.1:8000/swagger/` to find the documentation and use `Try it
 <img width="1271" alt="image" src="https://github.com/AhmedNasserG/national-id-validator/assets/37817681/d631def6-7211-438e-9797-e6c01d1ce1ff">
 <img width="1271" alt="image" src="https://github.com/AhmedNasserG/national-id-validator/assets/37817681/cc4b9a7d-746a-4334-84aa-3f6b6009d107">
 
-
 ### Redoc
 
 `http://127.0.0.1:8000/redoc/`
 
 <img width="1271" alt="image" src="https://github.com/AhmedNasserG/national-id-validator/assets/37817681/33b6ef09-124c-4484-a3fd-ec8c7c0159ed">
 <img width="1271" alt="image" src="https://github.com/AhmedNasserG/national-id-validator/assets/37817681/b205344f-8715-4408-b460-5777636f5a99">
-
 
 ### Examples
 
@@ -146,6 +143,7 @@ curl -X 'GET' \
 Credits for the background information [stackexchange](https://codereview.stackexchange.com/questions/221899/extract-information-from-egyptian-national-id)
 
 ## Notes
+
 - The API currently supports Egyptian national IDs for individuals born before the year 2100. Therefore, the API will need to be updated by the year 2100 to continue providing accurate validation for future generations.
 
 ## License
