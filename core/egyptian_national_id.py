@@ -47,7 +47,16 @@ GOVERNORATES: dict[str, str] = {
     "88": "Foreign",
 }
 
-CENTURIES: dict[str, int] = {"2": 1900, "3": 2000}
+CENTURIES: dict[str, int] = {
+    "2": 1900,
+    "3": 2000,
+    "4": 2100,
+    "5": 2200,
+    "6": 2300,
+    "7": 2400,
+    "8": 2500,
+    "9": 2600,
+}
 
 EGYPTIAN_NATIONAL_ID_REGEX = (
     rf"^(?P<{BIRTH_CENTURY}>{'|'.join(CENTURIES.keys())})"
