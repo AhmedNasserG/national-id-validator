@@ -15,6 +15,13 @@ poetry install
 poetry run python manage.py runserver
 ```
 
+for development, you need to setup `pre-commit`
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
 ## Project Testing
 
 ### Unit tests
@@ -34,15 +41,25 @@ curl -X 'GET' \
 
 go to `http://127.0.0.1:8000/swagger/` to find the documentation and use `Try it out` option
 
+
 ## API Documentations
 
 ### Swagger
 
 `http://127.0.0.1:8000/swagger/`
 
+<img width="1271" alt="image" src="https://github.com/AhmedNasserG/national-id-validator/assets/37817681/1a7ae746-4682-47e7-b5fa-4cc3740080ee">
+<img width="1271" alt="image" src="https://github.com/AhmedNasserG/national-id-validator/assets/37817681/75422d3e-fbbe-4914-b6e1-e3100fd58b70">
+
+
 ### Redoc
 
 `http://127.0.0.1:8000/redoc/`
+
+<img width="1271" alt="image" src="https://github.com/AhmedNasserG/national-id-validator/assets/37817681/b1b6d683-ad2a-4e17-9c91-676b7a39dd37">
+<img width="1271" alt="image" src="https://github.com/AhmedNasserG/national-id-validator/assets/37817681/c93aa087-131c-4314-abf1-4317c6e22416">
+
+
 
 ### Examples
 
